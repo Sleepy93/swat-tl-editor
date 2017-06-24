@@ -9,15 +9,17 @@ namespace SwatTL_Editor
 {
     public class Extensions
     {
-        public delegate void ProcessFile(Stream input);
-
         public string title;
-        public ProcessFile handler;
+		public Action conv;
+        public Action<Stream> handler;
+		public string exp;
 
-        public Extensions(string title, ProcessFile handler)
+        public Extensions(string title, Action<Stream> handler, Action conv, string exp)
         {
             this.title = title;
             this.handler = handler;
+			this.conv = conv;
+			this.exp = exp;
         }
     }
 }

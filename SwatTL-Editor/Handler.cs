@@ -295,18 +295,14 @@ DataSize: 0x{5:X8}", count, (i + 1), entryOffset, entryInfo.NameOffset, entryInf
 
                     Color[] palette = new Color[256];
                     ushort color;
-                    //double h, s, v;
                     for (int i = 0; i < 256; i++)
                     {
                         color = f.ReadUInt16();
                         palette[i] = Color.FromArgb(
-                            (byte)Clamp(((color & 0x7C00) >> 10) * 8, 0, 255),
-                            (byte)Clamp(((color & 0x3E0) >> 5) * 8, 0, 255),
-                            (byte)Clamp((color & 0x1F) * 8, 0, 255)
-                            );
-                        /*ColorToHSV(palette[i], out h, out s, out v);
-                        h = (h + 160) % 360;
-                        palette[i] = ColorFromHSV(h, s, v);*/
+							(byte)Clamp((color & 0x1F) * 8, 0, 255),
+							(byte)Clamp(((color & 0x3E0) >> 5) * 8, 0, 255),
+							(byte)Clamp(((color & 0x7C00) >> 10) * 8, 0, 255)
+							);
                     }
                     _img = new Bitmap(width, height);
 
