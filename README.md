@@ -43,6 +43,7 @@ https://www.codeproject.com/articles/31702/net-targa-image-reader
 
 > aaro4130 - Texture palette fix
 
+
 Special Thanks to: 
 
 > Kurtis2221 - Re-searching help, tga and mp3 features support.
@@ -51,7 +52,7 @@ Special Thanks to:
 
 # Plans:
 
-Add support to 3D models for that need more re-search.
+Add support to export 3D models correctly.
 
 # Xentax Topics:
 
