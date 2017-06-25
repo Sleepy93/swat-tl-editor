@@ -21,6 +21,12 @@ Created editor for S.W.A.T Target Liberty PSP game.
 
 > MP3 (audio) 
 
+> DOB (models)
+
+# Known issues
+
+> With model exporting to obj need more re-search because sometimes get's not correct float numbers.
+
 This project contains third party solutions.
 
 # For Swizzling psp textures:
