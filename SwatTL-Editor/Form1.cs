@@ -67,7 +67,12 @@ namespace SwatTL_Editor
 				}
 				PopulateTreeView(treeView1, files, '\\');
 			}
-		}
+			else
+			{
+                throw new InvalidOperationException("PSP_GAME Folder Does not exists");
+            }
+            
+        }
 
 		private static void PopulateTreeView(TreeView treeView, string[] paths, char pathSeparator)
 		{
