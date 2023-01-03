@@ -69,7 +69,7 @@ namespace SwatTL_Editor
 			}
 			else
 			{
-                throw new InvalidOperationException("PSP_GAME Folder Does not exists");
+                throw new InvalidDataException("PSP_GAME Folder Does not exists");
             }
             
         }

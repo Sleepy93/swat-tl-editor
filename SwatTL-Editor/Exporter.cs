@@ -73,14 +73,14 @@ namespace SwatTL_Editor
             uint vTypeOfModel = br.ReadUInt32();
             //Checking the Magic and Type of the Model
             if (magic != 0x7B)
-                throw new InvalidOperationException("Bad magic, not a valid DOB model file!");
+                throw new InvalidDataException("Bad magic, not a valid DOB model file!");
 
             // 1  - Single Object
             // 24 - MAP object
             // 25 - Character
 
             if (vTypeOfModel != 1 & vTypeOfModel !=24 & vTypeOfModel != 25)
-                throw new InvalidOperationException("Unknown type of model file, cannot load DOB model file!");
+                throw new InvalidDataException("Unknown type of model file, cannot load DOB model file!");
 
             uint vObjectOffset = br.ReadUInt32();
             uint vObjectCount = br.ReadUInt32();
