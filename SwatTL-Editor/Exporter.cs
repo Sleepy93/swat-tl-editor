@@ -76,10 +76,12 @@ namespace SwatTL_Editor
                 throw new InvalidDataException("Bad magic, not a valid DOB model file!");
 
             // 1  - Single Object
+            // 6 - Prop Objects like crates etc.
+            // 13 - Character  
             // 24 - MAP object
             // 25 - Character
 
-            if (vTypeOfModel != 1 & vTypeOfModel !=24 & vTypeOfModel != 25)
+            if (vTypeOfModel != 1 & vTypeOfModel != 6 & vTypeOfModel !=24 & vTypeOfModel != 25 & vTypeOfModel!=13)
                 throw new InvalidDataException("Unknown type of model file, cannot load DOB model file!");
 
             uint vObjectOffset = br.ReadUInt32();
@@ -112,6 +114,20 @@ namespace SwatTL_Editor
                 var vUnkOtherDATA01 = br.ReadBytes(0x18);
                 var vVertexOffset = br.ReadUInt32();
 
+                if (vTypeOfModel == 1)
+                {
+                    vVertexOffset -= 0x6;
+                }
+                if (vTypeOfModel == 6)
+                {
+                    vVertexOffset -= 0x4;
+                }
+                if (vTypeOfModel == 13 | vTypeOfModel == 25)
+                {
+                    vVertexOffset += 0x10;
+                }
+              
+                
                 // for support in blender :)
                 sb.AppendFormat("o {0}", vObjectName).AppendLine();
 
@@ -146,7 +162,7 @@ namespace SwatTL_Editor
 
                 sb.AppendFormat("g {0}", vObjectName).AppendLine();
                 sb.AppendLine("s off");
-                
+                /*
                 // build the tris list :)
                 for (int t = 0; t < vNumberOfVertex; t += 3)
                 {
@@ -157,7 +173,7 @@ namespace SwatTL_Editor
                     var t3 = (t + 3);
 
                     sb.AppendFormat("f {0} {1} {2}", t1, t2, t3);
-                }
+                }*/
             }
 
             sb.AppendLine();
