@@ -47,6 +47,8 @@ https://www.codeproject.com/articles/31702/net-targa-image-reader
 
 > shakotay2 - Re-searching, 3D model support
 
+> Durik256 - Re-Searching 3D model and coding support
+
 > aaro4130 - Texture palette fix
 
 
