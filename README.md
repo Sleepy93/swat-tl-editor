@@ -39,13 +39,15 @@ https://github.com/nickworonekin/puyotools/blob/master/Libraries/GimSharp/GimTex
 
 https://www.codeproject.com/articles/31702/net-targa-image-reader
 
-# Thanks for XenTaX forum guys helps...
+# Thanks for XenTaX forum guys helps
 
 > CarLuver69 - Fixing and Re-searching
 
 > Nick W  - Swizzling
 
 > shakotay2 - Re-searching, 3D model support
+
+> Durik256 - Re-Searching 3D model and coding support
 
 > aaro4130 - Texture palette fix
 
