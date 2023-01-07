@@ -163,7 +163,7 @@ namespace SwatTL_Editor
 			if (sender == mainToolStripMenuItem)
 			{
 				if (treeView1.SelectedNode != null)
-					tmp_filename = treeView1.SelectedNode.Text;
+					tmp_filename = treeView1.SelectedNode.FullPath;//.Text;
 				archive_idx = -1;
 			}
 			else

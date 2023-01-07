@@ -31,7 +31,7 @@ namespace SwatTL_Editor
             BinaryReader br;
             if (archive_idx == -1)
             {
-                br = new BinaryReader(new FileStream(tmp_filename, FileMode.Open, FileAccess.Read), Encoding.Default);
+                br = new BinaryReader(new FileStream(Path.Combine(path,tmp_filename), FileMode.Open, FileAccess.Read), Encoding.Default);
             }
             else
             {
