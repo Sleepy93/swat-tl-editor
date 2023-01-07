@@ -84,6 +84,7 @@ namespace SwatTL_Editor
 				files[i] = files[i].Substring(path.Length + 1);
 
 			treeView1.Nodes.Clear();
+            listBox1.Items.Clear();
             PopulateTreeView(treeView1, files, '\\');
         }
 
