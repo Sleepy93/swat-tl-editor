@@ -1,7 +1,9 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -55,26 +57,38 @@ namespace SwatTL_Editor
 			new Form2(this).ShowDialog();
 		}
 
-		public void LoadPath(string input)
+		public void LoadPath(string path, bool subdir = false, bool supfile = false)
 		{
-			path = input + "\\PSP_GAME\\";
-			if (Directory.Exists(path))
+            SearchOption op = SearchOption.TopDirectoryOnly;
+			DirectoryInfo parent = Directory.GetParent(path);
+
+            if (subdir && parent != null)
+				op = SearchOption.AllDirectories;
+
+
+            var files = Directory.GetFiles(path, "*.*", op);
+
+            if (supfile)
 			{
-				files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
-				for (int i = 0; i < files.Length; i++)
-				{
-					files[i] = files[i].Substring(path.Length);
-				}
-				PopulateTreeView(treeView1, files, '\\');
-			}
-			else
-			{
-                throw new InvalidDataException("PSP_GAME Folder Does not exists");
+                var allowedExtensions = types.Keys.ToArray();
+                files = files.Where(file => allowedExtensions.Any(Path.GetExtension(file).ToUpper().EndsWith)).ToArray();
+                //files = files.Where(file => types.ContainsKey(Path.GetExtension(file).ToUpper())).ToArray();
             }
-            
+
+
+            if (parent != null)
+                path = parent.FullName;
+
+            this.path = path;
+
+            for (int i = 0; i < files.Length; i++)
+				files[i] = files[i].Substring(path.Length + 1);
+
+			treeView1.Nodes.Clear();
+            PopulateTreeView(treeView1, files, '\\');
         }
 
-		private static void PopulateTreeView(TreeView treeView, string[] paths, char pathSeparator)
+        private static void PopulateTreeView(TreeView treeView, string[] paths, char pathSeparator)
 		{
 			TreeNode lastNode = null;
 			string subPathAgg;
@@ -95,26 +109,22 @@ namespace SwatTL_Editor
 				}
 				lastNode = null; // This is the place code was changed
 			}
-		}
+
+			if (treeView.Nodes.Count > 0)
+				treeView.Nodes[0].Expand();
+
+        }
 
 		private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
-			try
+            try
 			{
 				if (wmp != null) wmp.controls.stop();
 
-				TreeNode node = e.Node;
-				string tmp = node.Text;
-				node = node.Parent;
-				while (node != null)
-				{
-					tmp = node.Text + "\\" + tmp;
-					node = node.Parent;
-				}
-				string key = tmp.Substring(tmp.LastIndexOf('.') + 1);
-				key = key.ToUpper();
-				tmp = path + tmp;
-				if (types.ContainsKey(key))
+				string tmp = Path.Combine(path, e.Node.FullPath);
+                string key = Path.GetExtension(tmp).ToUpper().Replace(".", "");
+
+                if (types.ContainsKey(key))
 					types[key].handler.Invoke(new FileStream(tmp, FileMode.Open, FileAccess.Read));
 			}
 			catch (Exception ex)
