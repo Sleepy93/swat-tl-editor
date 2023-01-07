@@ -72,7 +72,6 @@ namespace SwatTL_Editor
 			{
                 var allowedExtensions = types.Keys.ToArray();
                 files = files.Where(file => allowedExtensions.Any(Path.GetExtension(file).ToUpper().EndsWith)).ToArray();
-                //files = files.Where(file => types.ContainsKey(Path.GetExtension(file).ToUpper())).ToArray();
             }
 
 
