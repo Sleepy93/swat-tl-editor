@@ -1,4 +1,4 @@
-﻿namespace SwatTL_Editor
+namespace SwatTL_Editor
 {
     partial class Form1
     {
