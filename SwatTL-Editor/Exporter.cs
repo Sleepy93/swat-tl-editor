@@ -53,7 +53,7 @@ namespace SwatTL_Editor
             }
 
 
-            StringBuilder sb = new StringBuilder("#by Durik256 git: https://github.com/Sleepy93/swat-tl-editor");
+            StringBuilder sb = new StringBuilder("#by Durik256 git: https://github.com/Sleepy93/swat-tl-editor\n");
 
             // move to beginning of declaration
             br.BaseStream.Position = ObjOfs;
