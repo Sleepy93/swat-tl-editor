@@ -10,13 +10,9 @@ namespace SwatTL_Editor
 		void Export_Generic()
 		{
 			if (archive_idx == -1)
-			{
 				File.Copy(tmp_filename, sfd.FileName);
-			}
 			else
-			{
 				File.WriteAllBytes(sfd.FileName, _files[archive_idx].Data);
-			}
 		}
 
         void Export_OBJ()
@@ -123,9 +119,7 @@ namespace SwatTL_Editor
 		{
 			string tmp = Path.GetDirectoryName(sfd.FileName);
 			foreach (LMPFinfo info in _files)
-			{
 				File.WriteAllBytes(Path.Combine(tmp, info.Filename), info.Data);
-			}
 		}
 	}
 }
