@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using _3D_Durik256;
 
 namespace SwatTL_Editor
 {
@@ -44,7 +45,20 @@ namespace SwatTL_Editor
 
         void DOB(Stream input)
         {
+            _img = null;
+            pictureBox1.Image = null;
+            pictureBox1.BackgroundImage = null;
 
+            try 
+            {
+                using (var fs = input)
+                using (var f = new BinaryReader(fs, Encoding.Default))
+                    _img = _3D_Durik256.Frame.Render(f, pictureBox1.Width, -3.14f / 2, -3.14f / 2);
+            }
+            catch{}
+
+            ShowRightSide(pictureBox1);
+            pictureBox1.Image = _img;
         }
 
         void FXO(Stream input)
